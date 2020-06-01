@@ -15,7 +15,7 @@ const CompanyRequests = (props) => {
         props.onRequestsGet(props.companies.fetchedCompany._id
             ? props.companies.fetchedCompany._id
             : props.authUser.user.company);
-        props.onCompanyEmployeeGet(props.authUser.user.company, localStorage.getItem('token'))
+        props.onCompanyEmployeeGet(props.authUser.user.company)
     }, []);
 
     const columns = React.useMemo(
@@ -98,8 +98,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onRequestsGet: (companyId, token) => dispatch(actions.fetchRequests(companyId, token)),
-        onCompanyEmployeeGet: (companyId, token) => dispatch(actions.fetchEmployees(companyId, token))
+        onRequestsGet: companyId => dispatch(actions.fetchRequests(companyId)),
+        onCompanyEmployeeGet: companyId => dispatch(actions.fetchEmployees(companyId))
     }
 };
 
